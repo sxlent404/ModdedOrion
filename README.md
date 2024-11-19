@@ -13,7 +13,7 @@ Complete documentation for the Modded Orion Library.
 
 ### Initializing the Library
 ```lua
-local OrionLib = loadstring(game:HttpGet('your_url_here'))()
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/sxlent404/ModdedOrion/refs/heads/main/orion.lua'))()
 ```
 
 ### Basic Setup
