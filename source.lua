@@ -11,23 +11,23 @@ local OrionLib = {
 	Connections = {},
 	Flags = {},
 	Themes = {
-		Default = {
-			Main = Color3.fromRGB(25, 25, 25),
-			Second = Color3.fromRGB(32, 32, 32),
-			Stroke = Color3.fromRGB(60, 60, 60),
-			Divider = Color3.fromRGB(60, 60, 60),
-			Text = Color3.fromRGB(240, 240, 240),
-			TextDark = Color3.fromRGB(150, 150, 150)
-		},
-		Voxul = {
-			Main = Color3.fromRGB(25, 25, 25),
-			Second = Color3.fromRGB(32, 32, 32),
-			Stroke = Color3.fromRGB(40, 30, 60),
-			Divider = Color3.fromRGB(40, 30, 60),
-			Text = Color3.fromRGB(240, 240, 240),
-			TextDark = Color3.fromRGB(150, 150, 150) 
-		}
-	},
+	    Default = {
+	        Main = Color3.fromRGB(25, 25, 25),
+	        Second = Color3.fromRGB(32, 32, 32),
+	        Stroke = Color3.fromRGB(60, 60, 60),
+	        Divider = Color3.fromRGB(60, 60, 60),
+	        Text = Color3.fromRGB(240, 240, 240),
+	        TextDark = Color3.fromRGB(150, 150, 150)
+	    },
+	    Voxul = {
+	        Main = Color3.fromRGB(25, 25, 25),
+	        Second = Color3.fromRGB(32, 32, 32),
+	        Stroke = Color3.fromRGB(41, 108, 189),
+	        Divider = Color3.fromRGB(41, 108, 189),
+	        Text = Color3.fromRGB(240, 240, 240),
+	        TextDark = Color3.fromRGB(150, 150, 150)
+	    }
+	}
 	SelectedTheme = "Voxul",
 	Folder = nil,
 	SaveCfg = false
@@ -104,35 +104,34 @@ task.spawn(function()
 end)
 
 local function MakeDraggable(DragPoint, Main)
-	pcall(function()
-		local Dragging, DragInput, MousePos, FramePos = false
-		AddConnection(DragPoint.InputBegan, function(Input)
-			if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-				Dragging = true
-				MousePos = Input.Position
-				FramePos = Main.Position
+    pcall(function()
+        local Dragging, DragInput, MousePos, FramePos = false
+        AddConnection(DragPoint.InputBegan, function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+                Dragging = true
+                MousePos = Input.Position
+                FramePos = Main.Position
 
-				Input.Changed:Connect(function()
-					if Input.UserInputState == Enum.UserInputState.End then
-						Dragging = false
-					end
-				end)
-			end
-		end)
-		AddConnection(DragPoint.InputChanged, function(Input)
-			if Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
-				DragInput = Input
-			end
-		end)
-		AddConnection(UserInputService.InputChanged, function(Input)
-			if Input == DragInput and Dragging then
-				local Delta = Input.Position - MousePos
-				--TweenService:Create(Main, TweenInfo.new(0.05, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position  = UDim2.new(FramePos.X.Scale,FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y)}):Play()
-				Main.Position  = UDim2.new(FramePos.X.Scale,FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y)
-			end
-		end)
-	end)
-end    
+                Input.Changed:Connect(function()
+                    if Input.UserInputState == Enum.UserInputState.End then
+                        Dragging = false
+                    end
+                end)
+            end
+        end)
+        AddConnection(DragPoint.InputChanged, function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
+                DragInput = Input
+            end
+        end)
+        AddConnection(UserInputService.InputChanged, function(Input)
+            if Input == DragInput and Dragging then
+                local Delta = Input.Position - MousePos
+                TweenService:Create(Main, TweenInfo.new(0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position  = UDim2.new(FramePos.X.Scale, FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y)}):Play()
+            end
+        end)
+    end)
+end   
 
 local function Create(Name, Properties, Children)
 	local Object = Instance.new(Name)
@@ -416,7 +415,7 @@ function OrionLib:MakeNotification(NotificationConfig)
 			BackgroundTransparency = 0,
 			AutomaticSize = Enum.AutomaticSize.Y
 		}), {
-			MakeElement("Stroke", Color3.fromRGB(93, 93, 93), 1.2),
+			MakeElement("Stroke", Color3.fromRGB(41, 108, 189), 1.2),
 			MakeElement("Padding", 12, 12, 12, 12),
 			SetProps(MakeElement("Image", NotificationConfig.Image), {
 				Size = UDim2.new(0, 20, 0, 20),
@@ -953,7 +952,7 @@ function OrionLib:MakeWindow(WindowConfig)
 				ToggleConfig.Name = ToggleConfig.Name or "Toggle"
 				ToggleConfig.Default = ToggleConfig.Default or false
 				ToggleConfig.Callback = ToggleConfig.Callback or function() end
-				ToggleConfig.Color = ToggleConfig.Color or Color3.fromRGB(9, 99, 195)
+				ToggleConfig.Color = ToggleConfig.Color or Color3.fromRGB(41, 108, 189)
 				ToggleConfig.Flag = ToggleConfig.Flag or nil
 				ToggleConfig.Save = ToggleConfig.Save or false
 
@@ -1039,7 +1038,7 @@ function OrionLib:MakeWindow(WindowConfig)
 				SliderConfig.Default = SliderConfig.Default or 50
 				SliderConfig.Callback = SliderConfig.Callback or function() end
 				SliderConfig.ValueName = SliderConfig.ValueName or ""
-				SliderConfig.Color = SliderConfig.Color or Color3.fromRGB(9, 149, 98)
+				SliderConfig.Color = SliderConfig.Color or Color3.fromRGB(41, 108, 189)
 				SliderConfig.Flag = SliderConfig.Flag or nil
 				SliderConfig.Save = SliderConfig.Save or false
 
