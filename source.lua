@@ -104,35 +104,34 @@ task.spawn(function()
 end)
 
 local function MakeDraggable(DragPoint, Main)
-	pcall(function()
-		local Dragging, DragInput, MousePos, FramePos = false
-		AddConnection(DragPoint.InputBegan, function(Input)
-			if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-				Dragging = true
-				MousePos = Input.Position
-				FramePos = Main.Position
+    pcall(function()
+        local Dragging, DragInput, MousePos, FramePos = false
+        AddConnection(DragPoint.InputBegan, function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+                Dragging = true
+                MousePos = Input.Position
+                FramePos = Main.Position
 
-				Input.Changed:Connect(function()
-					if Input.UserInputState == Enum.UserInputState.End then
-						Dragging = false
-					end
-				end)
-			end
-		end)
-		AddConnection(DragPoint.InputChanged, function(Input)
-			if Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
-				DragInput = Input
-			end
-		end)
-		AddConnection(UserInputService.InputChanged, function(Input)
-			if Input == DragInput and Dragging then
-				local Delta = Input.Position - MousePos
-				--TweenService:Create(Main, TweenInfo.new(0.05, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position  = UDim2.new(FramePos.X.Scale,FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y)}):Play()
-				Main.Position  = UDim2.new(FramePos.X.Scale,FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y)
-			end
-		end)
-	end)
-end    
+                Input.Changed:Connect(function()
+                    if Input.UserInputState == Enum.UserInputState.End then
+                        Dragging = false
+                    end
+                end)
+            end
+        end)
+        AddConnection(DragPoint.InputChanged, function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
+                DragInput = Input
+            end
+        end)
+        AddConnection(UserInputService.InputChanged, function(Input)
+            if Input == DragInput and Dragging then
+                local Delta = Input.Position - MousePos
+                TweenService:Create(Main, TweenInfo.new(0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Position  = UDim2.new(FramePos.X.Scale, FramePos.X.Offset + Delta.X, FramePos.Y.Scale, FramePos.Y.Offset + Delta.Y)}):Play()
+            end
+        end)
+    end)
+end   
 
 local function Create(Name, Properties, Children)
 	local Object = Instance.new(Name)
