@@ -11,22 +11,22 @@ local OrionLib = {
 	Connections = {},
 	Flags = {},
 	Themes = {
-		Default = {
-			Main = Color3.fromRGB(25, 25, 25),
-			Second = Color3.fromRGB(32, 32, 32),
-			Stroke = Color3.fromRGB(60, 60, 60),
-			Divider = Color3.fromRGB(60, 60, 60),
-			Text = Color3.fromRGB(240, 240, 240),
-			TextDark = Color3.fromRGB(150, 150, 150)
-		},
-		Voxul = {
-			Main = Color3.fromRGB(25, 25, 25),
-			Second = Color3.fromRGB(32, 32, 32),
-			Stroke = Color3.fromRGB(40, 30, 60),
-			Divider = Color3.fromRGB(40, 30, 60),
-			Text = Color3.fromRGB(240, 240, 240),
-			TextDark = Color3.fromRGB(150, 150, 150) 
-		}
+	    Default = {
+	        Main = Color3.fromRGB(25, 25, 25),
+	        Second = Color3.fromRGB(32, 32, 32),
+	        Stroke = Color3.fromRGB(60, 60, 60),
+	        Divider = Color3.fromRGB(60, 60, 60),
+	        Text = Color3.fromRGB(240, 240, 240),
+	        TextDark = Color3.fromRGB(150, 150, 150)
+	    },
+	    Voxul = {
+	        Main = Color3.fromRGB(25, 25, 25),
+	        Second = Color3.fromRGB(32, 32, 32),
+	        Stroke = Color3.fromRGB(41, 108, 189), -- Light blue color
+	        Divider = Color3.fromRGB(41, 108, 189), -- Light blue color
+	        Text = Color3.fromRGB(240, 240, 240),
+	        TextDark = Color3.fromRGB(150, 150, 150)
+	    }
 	},
 	SelectedTheme = "Voxul",
 	Folder = nil,
