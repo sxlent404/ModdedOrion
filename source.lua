@@ -27,8 +27,8 @@ local OrionLib = {
 	        Text = Color3.fromRGB(240, 240, 240),
 	        TextDark = Color3.fromRGB(150, 150, 150)
 	    }
-	}
-	SelectedTheme = "Voxul",
+	},
+	SelectedTheme = "beary_v3",
 	Folder = nil,
 	SaveCfg = false
 }
