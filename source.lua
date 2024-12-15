@@ -1433,7 +1433,7 @@ function OrionLib:MakeWindow(WindowConfig)
 			function ElementFunction:AddColorpicker(ColorpickerConfig)
 				ColorpickerConfig = ColorpickerConfig or {}
 				ColorpickerConfig.Name = ColorpickerConfig.Name or "Colorpicker"
-				ColorpickerConfig.Default = ColorpickerConfig.Default or Color3.fromRGB(0, 123, 255)
+				ColorpickerConfig.Default = ColorpickerConfig.Default or Color3.fromRGB(255, 255, 255)
 				ColorpickerConfig.Callback = ColorpickerConfig.Callback or function() end
 				ColorpickerConfig.Flag = ColorpickerConfig.Flag or nil
 				ColorpickerConfig.Save = ColorpickerConfig.Save or false
